@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export const ButtonComponentStyles = StyleSheet.create({
   // types
@@ -57,7 +57,7 @@ export const ButtonComponentStyles = StyleSheet.create({
   shadow: {
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    shadowColor: "#000",
-    shadowOffset: {height: 0, width: 0},
+    shadowColor: '#000',
+    shadowOffset: { height: 0, width: 0 },
   },
 });
