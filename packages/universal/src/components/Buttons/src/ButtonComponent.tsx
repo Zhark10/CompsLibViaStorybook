@@ -25,54 +25,51 @@ interface Props {
   loading?: boolean;
 }
 
-class ButtonComponent extends React.Component<Props> {
-  pressEventHandler = () => {
-    const { onPress } = this.props;
+const ButtonComponent: React.FC<Props> = ({
+  type,
+  color,
+  text,
+  styles,
+  marginBottom,
+  marginTop,
+  disabled,
+  shadow,
+  loading,
+  backgroundColor,
+  onPress,
+}) =>  {
+  const pressEventHandler = React.useCallback(() => {
     onPress && onPress();
-  };
+  }, [onPress]);
 
-  render() {
-    const {
-      type,
-      color,
-      text,
-      styles,
-      marginBottom,
-      marginTop,
-      disabled,
-      shadow,
-      loading,
-      backgroundColor,
-    } = this.props;
-    const buttonColor =
-      loading || disabled
-        ? { backgroundColor: '#cccccc', color: '#666666' }
-        : { backgroundColor, color };
-    const shadowStyles = shadow && ButtonComponentStyles.shadow;
-    return (
-      <TouchableOpacity
-        activeOpacity={disabled ? 1 : 0.7}
-        onPress={this.pressEventHandler}
-        disabled={loading || disabled}
-        style={[
-          { backgroundColor: buttonColor.backgroundColor },
-          { marginTop: marginTop ? 4 : 0 },
-          { marginBottom: marginBottom ? 4 : 0 },
-          styles,
-          ButtonComponentStyles[type],
-          shadowStyles,
-        ]}
-      >
-        {loading ? (
-          <ActivityIndicator size="small" color="#666666" />
-        ) : (
-          <Text style={{ color: buttonColor.color, ...styles }}>
-            {text.toUpperCase()}
-          </Text>
-        )}
-      </TouchableOpacity>
-    );
-  }
+  const buttonColor =
+    loading || disabled
+      ? { backgroundColor: '#cccccc', color: '#666666' }
+      : { backgroundColor, color };
+  const shadowStyles = shadow && ButtonComponentStyles.shadow;
+  return (
+    <TouchableOpacity
+      activeOpacity={disabled ? 1 : 0.7}
+      onPress={pressEventHandler}
+      disabled={loading || disabled}
+      style={[
+        { backgroundColor: buttonColor.backgroundColor },
+        { marginTop: marginTop ? 4 : 0 },
+        { marginBottom: marginBottom ? 4 : 0 },
+        styles,
+        ButtonComponentStyles[type],
+        shadowStyles,
+      ]}
+    >
+      {loading ? (
+        <ActivityIndicator size="small" color="#666666" />
+      ) : (
+        <Text style={{ color: buttonColor.color, ...styles }}>
+          {text.toUpperCase()}
+        </Text>
+      )}
+    </TouchableOpacity>
+  );
 }
 
 export default ButtonComponent;

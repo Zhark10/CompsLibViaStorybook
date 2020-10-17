@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 export const ButtonComponentStyles = StyleSheet.create({
-  // types
   default: {
     borderRadius: 40,
   },
